@@ -4,15 +4,15 @@
 <table class="form">
   <tr class="form">
     <td class="item">Total Income:</td>
-    <td class="value">SGD <%= @total_income%></td>
+    <td class="value">SGD <%= number_with_precision(@total_income, precision: 2) %></td>
   </tr>
   <tr class="form">
     <td class="item">Total Expense:</td>
-    <td class="value">SGD <%= @total_expense%></td>
+    <td class="value">SGD <%= number_with_precision(@total_expense, precision: 2) %></td>
   </tr>
   <tr class="form">
     <td class="item">Total Savings:</td>
-    <td class="value">SGD <%= @total_savings%></td>
+    <td class="value">SGD <%= number_with_precision(@total_savings, precision: 2) %></td>
   </tr>
 </table>
 <p class="link"><%= link_to 'Add Transaction', new_transaction_path %></p>
@@ -42,11 +42,11 @@
         <td><%= transaction.name %></td>
         <td><%= transaction.category.name %></td>
         <% if transaction.category.credit? %>
-          <td class="t-amount"><%= transaction.amount %></td>
+          <td class="t-amount"><%= number_with_precision(transaction.amount, precision: 2) %></td>
           <td class="t-amount"></td>
       <% else %>
           <td class="t-amount"></td>
-          <td class="t-amount"><%= transaction.amount %></td>
+          <td class="t-amount"><%= number_with_precision(transaction.amount, precision: 2) %></td>
       <% end %>
       <td class="t-actions">
         <%= link_to 'Edit', edit_transaction_path(transaction) %>
