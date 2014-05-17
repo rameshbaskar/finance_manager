@@ -2,6 +2,22 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+h1.title {
+  font-size: 40px;
+  text-align: center;
+  font-weight: bold;
+}
+
+p.title {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+p.link {
+  font-size: 14px;
+  font-weight: bold;
+}
+
 table, tr, td, th {
   border: 1px solid black;
   border-collapse: collapse;
@@ -30,37 +46,53 @@ th {
   text-align: center;
 }
 
-th.c-hidden {
-  width: 20%;
+th.t-hidden {
+  width: 10%;
   background-color: white;
   border-style: hidden;
   border-left: 1px solid black;
 }
 
-th.c-id {
+th.t-id {
   width: 5%;
 }
 
-th.c-description {
-  width: 50%;
+th.t-date {
+  width: 10%;
 }
 
-th.c-type {
-  width: 20;
+th.t-description {
+  width: 30%;
+}
+
+th.t-type {
+  width: 20%;
+}
+
+th.t-amount {
+  width: 10%;
 }
 
 tr.alt {
   background-color: transparentize(lightcyan, 0.9);
 }
 
-td.c-id {
+td.t-id {
   text-align: center;
 }
 
-td.c-actions {
+td.t-date {
+  text-align: center;
+}
+
+td.t-actions {
   background-color: white;
   text-align: center;
   border-style: hidden;
   border-left: 1px solid black;
   font-weight: bold;
+}
+
+td.t-amount {
+  text-align: right;
 }

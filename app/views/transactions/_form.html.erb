@@ -1,0 +1,49 @@
+<%= form_for(@transaction) do |f| %>
+  <% if @transaction.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@transaction.errors.count, 'error') %> prohibited this transaction from being saved:</h2>
+      <ul>
+      <% @transaction.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <table class="form">
+      <tr>
+        <td class="item">Description:</td>
+        <td class="value">
+          <%= f.text_field :name %>
+        </td>
+      </tr>
+      <tr>
+        <td class="item">Category:</td>
+        <td class="value">
+          <%= f.collection_select(:category_id, Category.all.order(:id), :id, :name, { prompt: 'Select Category' }) %>
+        </td>
+      </tr>
+      <tr>
+        <td class="item">Date:</td>
+        <td class="value">
+          <%= f.text_field :day %>
+          &nbsp;
+          <%= f.collection_select(:month_id, Month.all.order(:id), :id, :name, { prompt: 'Select Month' }) %>
+          &nbsp;
+          <%= f.text_field :year %>
+        </td>
+      </tr>
+      <tr>
+        <td class="item">Amount:</td>
+        <td class="value">
+          <%= f.text_field :amount %>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td class="value">
+          <%= f.submit %> &nbsp;
+          <%= link_to 'Back', transactions_path %>
+        </td>
+      </tr>
+    </table>
+<% end %>

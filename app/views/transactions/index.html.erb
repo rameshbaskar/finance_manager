@@ -1,0 +1,61 @@
+<h1 class="title">Finance Manager</h1>
+<br>
+<p class="link"><%= link_to 'Manage Categories', categories_path %></p>
+<table class="form">
+  <tr class="form">
+    <td class="item">Total Income:</td>
+    <td class="value">SGD <%= @total_income%></td>
+  </tr>
+  <tr class="form">
+    <td class="item">Total Expense:</td>
+    <td class="value">SGD <%= @total_expense%></td>
+  </tr>
+  <tr class="form">
+    <td class="item">Total Savings:</td>
+    <td class="value">SGD <%= @total_savings%></td>
+  </tr>
+</table>
+<p class="link"><%= link_to 'Add Transaction', new_transaction_path %></p>
+<h1>Transactions for: <%= this_period%></h1>
+<table width="80%">
+  <thead>
+    <tr>
+      <th class="t-id">ID</th>
+      <th class="t-date">Date</th>
+      <th class="t-description">Description</th>
+      <th class="t-type">Category</th>
+      <th class="t-amount">Income (SGD)</th>
+      <th class="t-amount">Expense (SGD)</th>
+      <th class="t-hidden"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% counter = 1 %>
+    <% @this_month_transactions.each do |transaction| %>
+    <% if counter.even? %>
+      <tr class="alt">
+    <% else %>
+      <tr>
+    <% end %>
+        <td class="t-id"><%= transaction.id %></td>
+        <td class="t-date"><%= transaction_date(transaction.day, transaction.month.name, transaction.year) %></td>
+        <td><%= transaction.name %></td>
+        <td><%= transaction.category.name %></td>
+        <% if transaction.category.credit? %>
+          <td class="t-amount"><%= transaction.amount %></td>
+          <td class="t-amount"></td>
+      <% else %>
+          <td class="t-amount"></td>
+          <td class="t-amount"><%= transaction.amount %></td>
+      <% end %>
+      <td class="t-actions">
+        <%= link_to 'Edit', edit_transaction_path(transaction) %>
+        &nbsp; &nbsp;
+        <%= link_to 'Delete', transaction, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </td>
+      </tr>
+      <% counter += 1 %>
+    <% end %>
+  </tbody>
+</table>
+<br>
