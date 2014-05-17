@@ -13,7 +13,7 @@
       <tr>
         <td class="item">Description:</td>
         <td class="value">
-          <%= f.text_field :name %>
+          <%= f.text_field :name, :class => 't-description-text-box' %>
         </td>
       </tr>
       <tr>
@@ -25,17 +25,17 @@
       <tr>
         <td class="item">Date:</td>
         <td class="value">
-          <%= f.text_field :day %>
+          <%= f.text_field :day, :class => 't-day-text-box' %>
           &nbsp;
           <%= f.collection_select(:month_id, Month.all.order(:id), :id, :name, { prompt: 'Select Month' }) %>
           &nbsp;
-          <%= f.text_field :year %>
+          <%= f.text_field :year, :class => 't-year-text-box' %>
         </td>
       </tr>
       <tr>
         <td class="item">Amount:</td>
         <td class="value">
-          <%= f.text_field :amount %>
+          <%= f.text_field :amount, :class => 't-amount-text-box' %>
         </td>
       </tr>
       <tr>

@@ -14,7 +14,7 @@
     <tr>
       <td class="item">Name:</td>
       <td class="value">
-        <%= f.text_field :name %>
+        <%= f.text_field :name, :class => 'c-name-text-box' %>
       </td>
     </tr>
     <tr>
@@ -22,7 +22,7 @@
       <td class="value">
         <%= f.label :credit, 'Income', :value => true %>
         <%= f.radio_button :credit, true %>
-        &nbsp;
+        &nbsp; &nbsp;
         <%= f.label :credit, 'Expense', :value => false %>
         <%= f.radio_button :credit, false %>
       </td>
