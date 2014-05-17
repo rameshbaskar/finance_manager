@@ -1,0 +1,38 @@
+<h1>Manage Categories</h1>
+<p><%= link_to 'Add Category', new_category_path %></p>
+<table width="40%">
+  <thead>
+    <tr>
+      <th class="id">ID</th>
+      <th class="description">Name</th>
+      <th class="type">Type</th>
+      <th class="hidden"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% counter = 1 %>
+    <% @categories.each do |category| %>
+      <% if counter.even? %>
+      <tr class="alt">
+      <% else %>
+      <tr>
+      <% end %>
+        <td class="id"><%= category.id %></td>
+        <td><%= category.name %></td>
+        <% if category.credit? %>
+            <td>Income</td>
+        <% else %>
+            <td>Expense</td>
+        <% end %>
+        <td class="actions">
+          <%= link_to 'Edit', edit_category_path(category) %>
+          &nbsp; &nbsp;
+          <%= link_to 'Delete', category, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+      <% counter += 1 %>
+    <% end %>
+  </tbody>
+</table>
+
+

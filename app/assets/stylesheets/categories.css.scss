@@ -1,0 +1,66 @@
+// Place all the styles related to the categories controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+table, tr, td, th {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 2px;
+  height: 30px;
+}
+
+.form table, .form tr, .form td {
+  border-style: hidden;
+  height: 30px;
+}
+
+td.item {
+  text-align: right;
+  font-weight: bold;
+}
+
+td.value {
+  text-align: left;
+}
+
+th {
+  font-size: 16px;
+  font-weight: bold;
+  background-color: transparentize(cornflowerblue, 0.4);
+  text-align: center;
+}
+
+th.hidden {
+  width: 20%;
+  background-color: white;
+  border-style: hidden;
+  border-left: 1px solid black;
+}
+
+th.id {
+  width: 5%;
+}
+
+th.description {
+  width: 50%;
+}
+
+th.type {
+  width: 20;
+}
+
+tr.alt {
+  background-color: transparentize(lightcyan, 0.9);
+}
+
+td.id {
+  text-align: center;
+}
+
+td.actions {
+  background-color: white;
+  text-align: center;
+  border-style: hidden;
+  border-left: 1px solid black;
+  font-weight: bold;
+}

@@ -1,0 +1,39 @@
+<%= form_for(@category) do |f| %>
+  <% if @category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@category.errors.count, 'error') %> prohibited this category from being saved:</h2>
+      <ul>
+      <% @category.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <table class="form">
+    <tr>
+      <td class="item">Name:</td>
+      <td class="value">
+        <%= f.text_field :name %>
+      </td>
+    </tr>
+    <tr>
+      <td class="item">Type:</td>
+      <td class="value">
+        <%= f.label :credit, 'Income', :value => true %>
+        <%= f.radio_button :credit, true %>
+        &nbsp;
+        <%= f.label :credit, 'Expense', :value => false %>
+        <%= f.radio_button :credit, false %>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td class="value">
+        <%= f.submit %> &nbsp;
+        <%= link_to 'Back', categories_path %>
+      </td>
+    </tr>
+  </table>
+
+<% end %>
