@@ -1,5 +1,5 @@
 FinanceManager::Application.routes.draw do
-  root 'transactions#index'
+  root 'dashboard#index'
   resources :transactions
   resources :categories
 end

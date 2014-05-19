@@ -6,18 +6,7 @@ class TransactionsController < ApplicationController
   # GET /transactions
   # GET /transactions.json
   def index
-    @total_income = 0
-    @total_expense = 0
-    @total_savings = 0
-
-    @transactions = Transaction.all.order :id
-    @this_month_transactions = Transaction.all.where(:month => Month.find_by_name(this_month), :year => this_year).order :id
-
-    @transactions.each do |t|
-      t.category.credit? ? (@total_income += t[:amount]) : (@total_expense += t[:amount])
-    end
-
-    @total_savings = @total_income - @total_expense
+    @transactions = Transaction.all.order(:id).reverse
   end
 
   # GET /transactions/1

@@ -1,5 +1,11 @@
-<h1>Manage Categories</h1>
-<p class="link"><%= link_to 'Add Category', new_category_path %>&nbsp;&nbsp;<%= link_to 'Back', transactions_path %></p>
+<%= render 'layouts/header' %>
+<table class="add-link">
+  <tr>
+    <td class="add-link-image"><%= image_tag('add-icon.png', size: '40x40') %></td>
+    <td class="add-link-text"><%= link_to 'Add Category', new_category_path %></td>
+  </tr>
+</table>
+<br><br>
 <table width="40%">
   <thead>
     <tr>
@@ -24,11 +30,11 @@
         <% else %>
             <td>Expense</td>
         <% end %>
-        <td class="c-actions">
-          <%= link_to 'Edit', edit_category_path(category) %>
-          &nbsp; &nbsp;
-          <%= link_to 'Delete', category, method: :delete, data: { confirm: 'Are you sure?' } %>
-        </td>
+          <td class="c-actions">
+            <%= link_to(image_tag('edit-icon.png', size: '30x30'), edit_category_path(category))%>
+            &nbsp; &nbsp;
+            <%= link_to(image_tag('delete-icon.png', size: '30x30'), category, method: :delete, data: { confirm: 'Are you sure?' }) %>
+          </td>
       </tr>
       <% counter += 1 %>
     <% end %>

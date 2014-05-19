@@ -11,3 +11,45 @@
  *= require_self
  *= require_tree .
  */
+
+.header table, .header tr, .header td {
+    border-style: hidden;
+    width: 100%;
+}
+
+td.header-image {
+    width: 5%;
+    text-align: left;
+}
+
+td.header-name {
+    width: 65%;
+    text-align: left;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+td.header-links {
+    width: 25%;
+    text-align: right;
+    font-size: 16px;
+}
+
+.add-link table, .add-link tr, .add-link td {
+    width: 20%;
+    border-style: hidden;
+}
+
+td.add-link-image {
+    width: 10%;
+    align-content: center;
+}
+
+td.add-link-text {
+    width: 80%;
+    text-align: left;
+    font-size: 16px;
+    font-weight: bold;
+    height: 30px;
+}
+

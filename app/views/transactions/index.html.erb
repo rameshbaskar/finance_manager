@@ -1,22 +1,11 @@
-<h1 class="title">Finance Manager</h1>
-<br>
-<p class="link"><%= link_to 'Manage Categories', categories_path %></p>
-<table class="form">
-  <tr class="form">
-    <td class="item">Total Income:</td>
-    <td class="value">SGD <%= number_with_precision(@total_income, precision: 2) %></td>
-  </tr>
-  <tr class="form">
-    <td class="item">Total Expense:</td>
-    <td class="value">SGD <%= number_with_precision(@total_expense, precision: 2) %></td>
-  </tr>
-  <tr class="form">
-    <td class="item">Total Savings:</td>
-    <td class="value">SGD <%= number_with_precision(@total_savings, precision: 2) %></td>
+<%= render 'layouts/header' %>
+<table class="add-link">
+  <tr>
+    <td class="add-link-image"><%= image_tag('add-icon.png', size: '40x40') %></td>
+    <td class="add-link-text"><%= link_to 'Add Transaction', new_transaction_path %></td>
   </tr>
 </table>
-<p class="link"><%= link_to 'Add Transaction', new_transaction_path %></p>
-<h1>Transactions for: <%= this_period%></h1>
+<br>
 <table width="80%">
   <thead>
     <tr>
@@ -31,7 +20,7 @@
   </thead>
   <tbody>
     <% counter = 1 %>
-    <% @this_month_transactions.each do |transaction| %>
+    <% @transactions.each do |transaction| %>
     <% if counter.even? %>
       <tr class="alt">
     <% else %>
@@ -49,13 +38,12 @@
           <td class="t-amount"><%= number_with_precision(transaction.amount, precision: 2) %></td>
       <% end %>
       <td class="t-actions">
-        <%= link_to 'Edit', edit_transaction_path(transaction) %>
+        <%= link_to(image_tag('edit-icon.png', size: '30x30'), edit_transaction_path(transaction))%>
         &nbsp; &nbsp;
-        <%= link_to 'Delete', transaction, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%= link_to(image_tag('delete-icon.png', size: '30x30'), transaction, method: :delete, data: { confirm: 'Are you sure?' }) %>
       </td>
       </tr>
       <% counter += 1 %>
     <% end %>
   </tbody>
 </table>
-<br>
