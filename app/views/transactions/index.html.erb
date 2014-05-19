@@ -31,11 +31,11 @@
         <td><%= transaction.name %></td>
         <td><%= transaction.category.name %></td>
         <% if transaction.category.credit? %>
-          <td class="t-amount"><%= number_with_precision(transaction.amount, precision: 2) %></td>
+          <td class="t-amount"><%= formatted_currency(transaction.amount) %></td>
           <td class="t-amount"></td>
       <% else %>
           <td class="t-amount"></td>
-          <td class="t-amount"><%= number_with_precision(transaction.amount, precision: 2) %></td>
+          <td class="t-amount"><%= formatted_currency(transaction.amount) %></td>
       <% end %>
       <td class="t-actions">
         <%= link_to(image_tag('edit-icon.png', size: '30x30'), edit_transaction_path(transaction))%>

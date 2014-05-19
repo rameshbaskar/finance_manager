@@ -1,4 +1,6 @@
 class DashboardController < ApplicationController
+  include TransactionsHelper
+
   def index
     @summary = []
 
@@ -29,11 +31,15 @@ class DashboardController < ApplicationController
   def monthly_summary(month, year)
     income = 0
     expense = 0
-    savings = 0
     transactions_for_period(month, year).each do |t|
       t.category.credit? ? (income += t[:amount]) : (expense += t[:amount])
     end
-    {:income => income, :expense => expense, :savings => savings}
+    savings = income - expense
+    {
+      :income => formatted_currency(income),
+      :expense => formatted_currency(expense),
+      :savings => formatted_currency(savings)
+    }
   end
 
   def monthly_category_summary(month, year)

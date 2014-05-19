@@ -1,43 +1,60 @@
 <%= render 'layouts/header' %>
 <% @summary.each do |s| %>
     <h1><%= "#{s[:month]}-2014"%></h1>
-    <table class="form">
-      <tr class="form">
-        <td class="item">Total Income:</td>
-        <td class="value">SGD <%= number_with_precision(s[:cost_summary][:income], precision: 2) %></td>
-      </tr>
-      <tr class="form">
-        <td class="item">Total Expense:</td>
-        <td class="value">SGD <%= number_with_precision(s[:cost_summary][:expense], precision: 2) %></td>
-      </tr>
-      <tr class="form">
-        <td class="item">Total Savings:</td>
-        <td class="value">SGD <%= number_with_precision(s[:cost_summary][:savings], precision: 2) %></td>
-      </tr>
-    </table>
     <br>
-    <h1>Category wise Summary</h1>
-    <table class="form">
-      <% s[:category_summary].each do |cs| %>
-        <tr class="form">
-          <td class="item"><%= cs[:category] %>:</td>
-          <td class="value">SGD <%= number_with_precision(cs[:amount], precision: 2) %></td>
+    <table width="20%">
+      <thead>
+        <tr>
+          <th colspan="2">Financial Summary (SGD)</th>
         </tr>
-      <% end %>
+      </thead>
+      <tbody>
+          <tr>
+            <td class="item">Total Income:</td>
+            <td class="value-display"><%= s[:cost_summary][:income] %></td>
+          </tr>
+          <tr>
+            <td class="item">Total Expense:</td>
+            <td class="value-display"><%= s[:cost_summary][:expense] %></td>
+          </tr>
+          <tr>
+            <td class="item">Total Savings:</td>
+            <td class="value-display"><%= s[:cost_summary][:savings] %></td>
+          </tr>
+      </tbody>
     </table>
-    <br>
-    <h1>Transactions</h1>
+    <br><br>
+    <table width="20%">
+      <thead>
+        <tr>
+          <th colspan="2">Category Wise Summary (SGD)</th>
+        </tr>
+      </thead>
+      <tbody>
+          <% s[:category_summary].each do |cs| %>
+            <% if cs[:amount] > 0 %>
+              <tr>
+                <td class="item"><%= cs[:category] %>:</td>
+                <td class="value-display"><%= formatted_currency(cs[:amount]) %></td>
+              </tr>
+            <% end %>
+          <% end %>
+      </tbody>
+    </table>
+    <br><br>
     <table width="80%">
       <thead>
-      <tr>
-        <th class="t-id">ID</th>
-        <th class="t-date">Date</th>
-        <th class="t-description">Description</th>
-        <th class="t-type">Category</th>
-        <th class="t-amount">Income (SGD)</th>
-        <th class="t-amount">Expense (SGD)</th>
-        <th class="t-hidden"></th>
-      </tr>
+        <tr class="header">
+          <th colspan="6">Transactions</th>
+        </tr>
+        <tr>
+          <th class="t-id">ID</th>
+          <th class="t-date">Date</th>
+          <th class="t-description">Description</th>
+          <th class="t-type">Category</th>
+          <th class="t-amount">Income (SGD)</th>
+          <th class="t-amount">Expense (SGD)</th>
+        </tr>
       </thead>
       <tbody>
       <% counter = 1 %>
@@ -52,17 +69,12 @@
           <td><%= transaction.name %></td>
           <td><%= transaction.category.name %></td>
           <% if transaction.category.credit? %>
-              <td class="t-amount"><%= number_with_precision(transaction.amount, precision: 2) %></td>
+              <td class="t-amount"><%= formatted_currency(transaction.amount) %></td>
               <td class="t-amount"></td>
           <% else %>
               <td class="t-amount"></td>
-              <td class="t-amount"><%= number_with_precision(transaction.amount, precision: 2) %></td>
+              <td class="t-amount"><%= formatted_currency(transaction.amount) %></td>
           <% end %>
-          <td class="t-actions">
-            <%= link_to(image_tag('edit-icon.png', size: '30x30'), edit_transaction_path(transaction))%>
-            &nbsp; &nbsp;
-            <%= link_to(image_tag('delete-icon.png', size: '30x30'), transaction, method: :delete, data: { confirm: 'Are you sure?' }) %>
-          </td>
           </tr>
           <% counter += 1 %>
       <% end %>
