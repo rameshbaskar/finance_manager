@@ -25,6 +25,6 @@ module TransactionsHelper
   private
 
   def today
-    Chronic.parse('today')
+    Chronic.parse('today at 12 am')
   end
 end
