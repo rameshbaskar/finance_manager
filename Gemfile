@@ -12,10 +12,6 @@ gem 'chronic'
 gem 'unicorn'
 gem 'rails_12factor', group: :production
 
-group :doc do
-  gem 'sdoc', require: false
-end
-
 group :test, :development do
   gem 'rspec-rails'
   gem 'rspec-expectations'
